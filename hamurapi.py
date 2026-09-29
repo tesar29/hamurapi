@@ -12,7 +12,7 @@ def printNotEnoughGrain():
 
 def printNotEnoughLand():
     print(f'Подумайте еще, у Вас есть только {land} акров земли.')
-
+# изменение 2
 def endGameBad():
     print('Ваше правление было ужасным, \n', 'Вас объявили национальным предателем и изгнали из резиденции!!!')
     quit()
