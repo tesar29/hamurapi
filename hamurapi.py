@@ -1,6 +1,8 @@
 import random 
 import sys
 
+# Какое то изменение
+
 def quit():
     print("\n\n\nДо встречи. \n")
     sys.exit()
