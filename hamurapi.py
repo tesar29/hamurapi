@@ -1,6 +1,6 @@
 import random 
 import sys
-
+# 3
 # Какое то изменение
 
 def quit():
