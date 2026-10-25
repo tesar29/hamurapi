@@ -1,21 +1,30 @@
-import random 
+import random
 import sys
+
+n = sys.flags
 # 3
 # Какое то изменение
+
 
 def quit():
     print("\n\n\nДо встречи. \n")
     sys.exit()
 
+
 def printNotEnoughGrain():
     print(f'Подумайте еще. У Вас всего {grain} бушелей зерна.')
+
 
 def printNotEnoughLand():
     print(f'Подумайте еще, у Вас есть только {land} акров земли.')
 # изменение 2
+
+
 def endGameBad():
-    print('Ваше правление было ужасным, \n', 'Вас объявили национальным предателем и изгнали из резиденции!!!')
+    print('Ваше правление было ужасным, \n',
+          'Вас объявили национальным предателем и изгнали из резиденции!!!')
     quit()
+
 
 def tradeLand():
     global land, grain
@@ -34,11 +43,14 @@ def tradeLand():
     land = land + buysell
     grain = grain - cost * buysell
 
+
 def feedPeople():
     global food, grain
     print('')
     while True:
-        food = int(input('Сколько бушелей зерна Вы потратите, чтобы накормить людей? '))
+        food = int(
+            input('Сколько бушелей зерна Вы потратите, чтобы накормить людей?')
+        )
         if food < 0:
             continue
         if food <= grain:
@@ -46,10 +58,11 @@ def feedPeople():
         printNotEnoughGrain()
     grain = grain - food
 
+
 def plantSeeds():
     global grain, harvest, harvest_total
     print('')
-    plant = 0 
+    plant = 0
     while True:
         plant = int(input('Сколько акров земли Вы хотите засеять? '))
         if plant < 0:
@@ -65,8 +78,9 @@ def plantSeeds():
             continue
         break
     grain = grain - plant // 2
-    harvest = random.randint(1,6)
-    harvest_total =plant * harvest
+    harvest = random.randint(1, 6)
+    harvest_total = plant * harvest
+
 
 def ratsInvasion():
     global rats, grain
@@ -76,13 +90,16 @@ def ratsInvasion():
         rats = grain // c
     grain -= rats
 
+
 def harvestGrain():
     global grain
     grain = grain + harvest_total
 
+
 def changePopulation():
     global people_came, population, starved, percent_died, died_total
-    people_came = random.randint(1,6) * (20 * land + grain) // population // 100 + 1
+    people_came = random.randint(
+        1, 6) * (20 * land + grain) // population // 100 + 1
     starved = population - food // 20
     if starved <= 0:
         starved = 0
@@ -90,10 +107,12 @@ def changePopulation():
         if starved > 0.45 * population:
             print(f'\nЗа год от голода умерло {starved} человек!!!')
             endGameBad()
-        percent_died = ((year - 1) * percent_died + starved * 100 // population) // year
+        percent_died = ((year - 1) * percent_died +
+                        starved * 100 // population) // year
         population = population - starved
         died_total = died_total + starved
     population = population + people_came
+
 
 def plague():
     global year, population
@@ -101,20 +120,24 @@ def plague():
         population -= population // 2
         print('\nЭпидемия чумы! Половина населения умерла.')
 
+
 def report():
     print("\nХаммурапи, сообщаю Вам,")
-    print(f'в прошлом {year} году {starved} людей умерли от голода, {people_came} человек прибыли в город.')
+    print(f'в прошлом {year} году {starved} людей умерли от голода, {
+          people_came} человек прибыли в город.')
     print(f'Всего в городе живет {population} человек.')
     print(f'Город владеет {land} акрами земли.')
     print(f'Вы собрали {harvest} бушелей зерна с акра.')
     print(f'Крысы съели {rats} бушелей зерна.')
     print(f'Сейчас у Вас {grain} бушелей в хранилище.\n')
 
+
 def final():
     print(f'За прошедшие десять лет в среднем {percent_died} процентов')
-    print(f'населения в год умирало от голода. Всего умерло {died_total} человек!!!')
+    print(f'населения в год умирало от голода. Всего умерло {
+          died_total} человек!!!')
     L = land // population
-    print(f'В начале праления у Вас было 10 акров земли на человека,')
+    print('В начале правления у Вас было 10 акров земли на человека,')
     print(f'а в конце стало {L} акров на человека.\n')
     if percent_died > 10 or L < 9:
         print('Своим жестким руководством Вы переплюнули Ивана Грозного.')
@@ -122,16 +145,19 @@ def final():
     elif percent_died > 3 or L < 10:
         print('Ваше правление было не самым плохим.')
         print(f'Хотя {random.randint(0, int(population * 0.8))} человек.')
-        print('предпочли бы, чтобы Ваша жизнь закончилась в результате покушения.')
+        print('предпочли бы, чтобы Ваша жизнь закончилась в результате \
+        покушения.')
     else:
         print('Фантастический результат!! Даже Карл Великий и')
         print('Петр первый не смогли бы лучше!')
+
+
 print("\t\t\t\tХАММУРАПИ")
 print('\n\n\nПопробуйте управлять древним шумерским государством')
 print('в течении десяти лет.\n')
 
-year = 0 
-starved = 0 
+year = 0
+starved = 0
 population = 100
 rats = 200
 harvest_total = 3000
