@@ -1,11 +1,6 @@
 import random
 import sys
 
-n = sys.flags
-# 3
-# Какое то изменение
-
-
 def quit():
     print("\n\n\nДо встречи. \n")
     sys.exit()
